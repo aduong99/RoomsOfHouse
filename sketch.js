@@ -204,7 +204,7 @@ drawLiving = function() {
    rect(width/2 - 250, 20, 500, 55, 20);
 
    fill(0,80,0);
-   text("'h' to go to hallway • 'x' to go to yard", width/2, 55);
+   text("'h' to go to hallway • 'y' to go to yard", width/2, 55);
 }
 
 drawCloset2 = function() {
@@ -415,8 +415,8 @@ function keyPressed() {
       drawFunction = drawHallway;
     }
 
-    if ( key === 'x' ) {
-      drawFunction = drawYard2;
+    if ( key === 'y' ) {
+      drawFunction = drawYard;
     }
   }
 
@@ -431,7 +431,7 @@ function keyPressed() {
     }
 
     if ( key === 'k' ) {
-      drawFunction = drawKitchenl
+      drawFunction = drawKitchen;
     }
   }
 
