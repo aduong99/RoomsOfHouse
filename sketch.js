@@ -100,7 +100,7 @@ drawDen = function() {
    rect(width/2 - 250, 20, 500, 55, 20);
 
    fill(0,80,0);
-   text("'k' to go to kitchen /// 'y' to go to yard", width/2, 55);
+   text("'k' to go to kitchen • 'y' to go to yard", width/2, 55);
 }
 
 //-- drawTwo() will draw the image at index 1 from the array
@@ -116,7 +116,7 @@ drawKitchen = function() {
    rect(width/2 - 250, 20, 500, 55, 20);
 
    fill(0,80,0);
-   text("'d' to go to dining /// 'e' to go to den /// 'y' to go to yard", width/2, 55);
+   text("'d' to go to dining • 'e' to go to den • 'y' to go to yard", width/2, 55);
 }
 
 //-- drawOne() will draw the image at index 2 from the array
@@ -131,7 +131,7 @@ drawDining = function() {
    rect(width/2 - 250, 20, 500, 55, 20);
 
    fill(0,80,0);
-   text("'k' to go to kitchen /// 'h' to go to hallway", width/2, 55);
+   text("'k' to go to kitchen • 'h' to go to hallway", width/2, 55);
 }
 
 //-- drawOne() will draw the image at index 3 from the array
@@ -146,7 +146,7 @@ drawHallway = function() {
    rect(width/2 - 400, 20, 800, 55, 20);
 
    fill(0,80,0);
-   text("'d' to go to dining // 'm' to go to master bed // 'r' to bedroom // 't' to main bath // 'l' to living room ", width/2, 55);
+   text("'d' to go to dining • 'm' to go to master bed • 'r' to bedroom • 't' to main bath • 'l' to living room ", width/2, 55);
 }
 
 //-- drawOne() will draw the image at index 4 from the array
@@ -161,7 +161,7 @@ drawMasterBed = function() {
    rect(width/2 - 250, 20, 500, 55, 20);
 
    fill(0,80,0);
-   text("'c' to go to closet /// 'b' to go to bathroom // 'h' to go to hallway", width/2, 55);
+   text("'c' to go to closet • 'b' to go to bathroom • 'h' to go to hallway", width/2, 55);
 }
 
 drawMasterCloset = function() {
@@ -176,7 +176,7 @@ drawMasterCloset = function() {
     rect(width/2 - 250, 20, 500, 55, 20);
 
     fill(0,80,0);
-    text("'m' to go to master bedroom /// 'b' to go to bathroom", width/2, 55);
+    text("'m' to go to master bedroom • 'b' to go to bathroom", width/2, 55);
 }
 
 drawMainBath= function() {
@@ -204,7 +204,7 @@ drawLiving = function() {
    rect(width/2 - 250, 20, 500, 55, 20);
 
    fill(0,80,0);
-   text("'h' to go to hallway /// 'y' to go to yard", width/2, 55);
+   text("'h' to go to hallway • 'x' to go to yard", width/2, 55);
 }
 
 drawCloset2 = function() {
@@ -232,7 +232,7 @@ drawMasterBath = function() {
    rect(width/2 - 250, 20, 500, 55, 20);
 
    fill(0,80,0);
-   text("'m' to go to master bedroom /// 'c' to go to closet", width/2, 55);
+   text("'m' to go to master bedroom • 'c' to go to closet", width/2, 55);
 }
 
 drawBedroom2 = function() {
@@ -246,10 +246,9 @@ drawBedroom2 = function() {
    rect(width/2 - 250, 20, 500, 55, 20);
 
    fill(0,80,0);
-   text("'h' to go to hallway /// 's' to go to yard", width/2, 55);
+   text("'h' to go to hallway • 's' to go to closet", width/2, 55);
 }
 
-//-- drawSplash() will draw the image at index 4 from the array
 drawYard = function() {
    image(images[0],width/2, height/2);
 
@@ -261,22 +260,7 @@ drawYard = function() {
    rect(width/2 - 250, 20, 500, 55, 20);
 
    fill(0,80,0);
-   text("'k' to go to kitchen /// 'e' to go to den", width/2, 55);
-}
-
-//-- drawSplash() will draw the image at index 4 from the array
-drawYard2 = function() {
-   image(images[0],width/2, height/2);
-
-    fill(255);
-    text("Front Lawn", width/2, height - gTextOffset);
-
-    fill(255);
-   noStroke();
-   rect(width/2 - 250, 20, 500, 55, 20);
-
-   fill(0,80,0);
-   text("'l' to go to living room ", width/2, 55);
+   text("'k' to go to kitchen •  'e' to go to den • 'l' to go living room", width/2, 55);
 }
 
 
@@ -295,6 +279,10 @@ function keyPressed() {
 
     if( key === 'e' ) {
       drawFunction = drawDen;
+    }
+
+    if (key === 'l' ) {
+      drawFunction = drawLiving;
     }
   }
 
@@ -359,75 +347,91 @@ function keyPressed() {
     }
   }
 
-  // draw Master Bed
-  if ( drawFunction === drawMasterBed ) {
-    if ( key === 'c') {
-      drawFunction = drawMasterCloset;
-    }
-
-    if ( key === 'b') {
-      drawFunction = drawMasterBath;
-    }
-
-    if ( key === 'h') {
+  // draw Main Bathroom
+  if ( drawFunction === drawMainBath ) {
+    if ( key === 'h' ) {
       drawFunction = drawHallway;
-    }
-  }
-
-  // draw Master Closet
-  if ( drawFunction === masterCloset ) {
-    if ( key === 'b') {
-      drawFunction = drawMasterBath;
-    }
-
-    if (key === 'm') {
-      drawFunction = drawMasterBed;
-    }
-  }
-
-  // draw Master Bath
-  if ( drawFunction == masterBath ) {
-    if (key === 'm') {
-      drawFunction = drawMasterBed;
-    }
-
-    if ( key === 'c') {
-      drawFunction = drawMasterCloset;
     }
   }
 
   // draw Bedroom 2
   if ( drawFunction === drawBedroom2 ) {
-    if ( key === 's') {
-      drawFunction = drawCloset2;
+    if ( key === 'h' ) {
+      drawFunction = drawHallway;
     }
 
-    if ( key === 'h') {
-      drawFunction = drawHallway;
+    if ( key === 's' ) {
+      drawFunction = drawCloset2;
     }
   }
 
   // draw Closet 2
   if ( drawFunction === drawCloset2 ) {
-    if ( key === 'r') {
+    if ( key === 'r' ) {
       drawFunction = drawBedroom2;
+    }
+  }
+
+  // draw Master Bedroom
+  if ( drawFunction === drawMasterBed ) {
+    if ( key === 'h' ) {
+      drawFunction = drawHallway;
+    }
+
+    if ( key === 'b' ) {
+      drawFunction = drawMasterBath;
+    }
+
+    if ( key === 'c' ) {
+      drawFunction = drawMasterCloset;
+    }
+  }
+
+  // draw Master Closet
+  if ( drawFunction === drawMasterCloset ) {
+    if ( key === 'm' ) {
+      drawFunction = drawMasterBed;
+    }
+
+    if ( key === 'b' ) {
+      drawFunction = drawMasterBath;
+    }
+  }
+
+  // draw Master Bath 
+  if ( drawFunction === drawMasterBath ) {
+    if ( key === 'c' ) {
+      drawFunction = drawMasterCloset;
+    }
+
+    if ( key === 'm' ) {
+      drawFunction = drawMasterBed;
     }
   }
 
   // draw Living Room
   if ( drawFunction === drawLiving ) {
-    if (key === 'x') {
-      drawFunction = drawYard2;
+    if ( key === 'h' ) {
+      drawFunction = drawHallway;
     }
 
-    if ( key === 'h') {
-      drawFunction = drawHallway;
+    if ( key === 'x' ) {
+      drawFunction = drawYard2;
     }
   }
 
-   if ( drawFunction === drawYard2 ) {
-    if (key === 'l') {
+  // draw Yard again
+  if ( drawFunction === drawYard2 ) {
+    if (key === 'l' ) {
       drawFunction = drawLiving;
+    }
+
+    if ( key === 'e' ) {
+      drawFunction = drawDen;
+    }
+
+    if ( key === 'k' ) {
+      drawFunction = drawKitchenl
     }
   }
 
