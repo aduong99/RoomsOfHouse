@@ -1,64 +1,149 @@
 /***********************************************************************************
-  SimpleShapes
-  by Scott Kildall
+	RoomsOfHouse
+	by An Duong
 
-  Sketch for drawing some very simple shapes
 
 ***********************************************************************************/
 
-// Global Variables
-var ellipseXPos = 0;
-var ellipseYPos = 300;
-var ellipseDist = 40;
+// Array of images
+var images = [];
 
-// Setup code goes here
+// variable that is a function 
+var drawFunction;
+
+// offset from bottom of screen
+var gTextOffset = 20;
+
+var strings = [];
+
+// load all images into an array
+function preload() {
+  images[0] = loadImage('assets/home.jpg');
+  images[1] = loadImage('assets/den.jpg');
+  images[2] = loadImage('assets/kitchen.jpg');
+  images[3] = loadImage('assets/dining.jpg');
+  images[4] = loadImage('assets/hallway.jpg');
+  images[5] = loadImage('assets/masterBed.jpg');
+  // images[6] = loadImage('assets/masterCloset.jpg');
+  // images[7] = loadImage('assets/mainBath.jpg');
+  // images[8] = loadImage('assets/living.jpg');
+  // images[9] = loadImage('assets/closet2.jpg');
+  // images[10] = loadImage('assets/masterBath.jpg');
+  // images[11] = loadImage('assets/br2.jpg');
+}
+
+// Center drawing, drawFunction will be one for default
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  print("Starting up Simple Shapes");
-  rectMode(CENTER);
-  ellipseMode(CENTER);
 
-  print("Width = " + width);
-  print("Height = " + height);
+  // Center our drawing objects
+  imageMode(CENTER);
+  textAlign(CENTER);
+  textSize(24);
 
-  // set ellipse X pos
-  ellipseXPos = width/2 - 250;
- }
+  // set to one for startup
+  drawFunction = drawYard;
+}
 
-// Draw code goes here
+// Very simple, sets the background color and calls your state machine function
 function draw() {
-  background(34,50,204);
+  background(192);
 
-  drawCircle();
-  drawEllipses();
-  drawRects();
+  // will call your state machine function
+  drawFunction();
 }
 
-function drawCircle() {
-  fill(0,102,255);
-  circle(width/2,height/2,20);
+loadArray = function() {
+    strings[0] = "An's Dream Home";
+    strings[1] = "";
+    strings[2] = "Click on objects to navigate";
+}
+//-- drawYard() will draw the image at index 0 from the array
+drawYard = function() {
+   image(images[0]);
+
+   fill(0,0,0);
+   text("Front Yard", width/2, height - gTextOffset);
+
+   loadArray();
 }
 
-function drawEllipses() {
-  // Ellipse #1
-  fill(0,255,0);
-  ellipse(ellipseXPos,ellipseYPos,200,80);
+//-- drawDen() will draw the image at index 1 from the array
+drawDen = function() {
+   image(images[1]);
 
-  // Ellipse #2
-  fill(0,255,0);
-  ellipse(ellipseXPos,ellipseYPos+ellipseDist,200,80);
+   fill(240,120,0);
+   text("Den", width/2, height - gTextOffset);
 }
 
-function drawRects() {
- // Center Rectangle
-  fill(255,0,0);
-  stroke(220);
-  strokeWeight(3);
-  rect( width/2,height/2,200,100);
+//-- drawKitchen() will draw the image at index 2 from the array
+drawKitchen = function() {
+   image(images[2]);
 
-  // Tall Rect
-  fill(126,50,20);
-  stroke(27);
-  strokeWeight(2);
-  rect( 100,height/2,40,400);
- }
+   fill(40,230,120);
+   text("Kitchen", width/2, height - gTextOffset);
+}
+
+//-- drawOne() will draw the image at index 3 from the array
+drawDining = function() {
+   image(images[3];
+
+   fill(255,255,178);
+   text("Dining", width/2, height - gTextOffset);
+}
+
+//-- drawOne() will draw the image at index 4 from the array
+drawHallway = function() {
+   image(images[4]);
+
+   fill(230,50,50);
+   text("Hallway", width/2, height - gTextOffset);
+}
+
+
+
+//-- drawSplash() will draw the image at index 4 from the array
+drawMasterBed = function() {
+   image(images[5]);
+
+
+   fill(230,50,50);
+   text("Master Bedroom", width/2, height - gTextOffset);
+}
+
+
+//========= TEMPLATE: add or change interface functions, as you like =========
+
+// Change the drawFunction variable based on your interaction
+function keyTyped() {
+  if( drawFunction === drawYard ) {
+    return;
+  }
+
+  if( key === '1' ) {
+  	drawFunction = drawYard;
+  }
+  else if( key === '2' ) {
+  	drawFunction = drawDen;
+  }
+  else if( key === '3' ) {
+  	drawFunction = drawKitchen;
+  }
+  else if( key === '4' ) {
+  	drawFunction = drawDining;
+  }
+  else if( key === '5' ) {
+  	drawFunction = drawHallway;
+  }
+
+  else if( key === '6' ) {
+    drawFunction = drawMasterBed;
+  }
+}
+
+function mousePressed() {
+  // only change state if we are in splash screen
+  if( drawFunction === drawYard ) {
+    drawFunction = drawDen;
+  }
+}
